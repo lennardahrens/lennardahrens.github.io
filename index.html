@@ -1,12 +1,126 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h2>
-      Soundcheck
-    </h2>
-    <p>
-      Jetzt eine gute Zeit mieten !
-    </p>
-    <img src="Köln".jpg alt="Soundcheck" width="460" height="345">
-  </body>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soundcheck – Soundboks Vermietung</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    form {
+      background: white;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    form button {
+      background: #111;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Soundcheck</h1>
+    <p>Deine Soundboks-Vermietung</p>
+  </header>
+
+  <section class="gallery">
+    <img src="bild1.jpg" alt="Soundboks Beispiel 1" />
+    <img src="bild2.jpg" alt="Soundboks Beispiel 2" />
+    <img src="bild3.jpg" alt="Soundboks Beispiel 3" />
+  </section>
+
+  <section>
+    <form>
+      <h2>Jetzt anfragen</h2>
+      <label for="email">E-Mail-Adresse</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="from">Von</label>
+      <input type="date" id="from" name="from" required>
+
+      <label for="to">Bis</label>
+      <input type="date" id="to" name="to" required>
+
+      <label for="box">Welche Box?</label>
+      <select id="box" name="box" required>
+        <option value="">Bitte auswählen</option>
+        <option value="soundboks3">Soundboks 3</option>
+        <option value="soundboks4">Soundboks 4</option>
+      </select>
+
+      <label for="location">Standort</label>
+      <select id="location" name="location" required>
+        <option value="">Bitte auswählen</option>
+        <option value="berlin">Berlin</option>
+        <option value="hamburg">Hamburg</option>
+        <option value="muenchen">München</option>
+        <option value="koeln">Köln</option>
+      </select>
+
+      <button type="submit">Anfrage senden</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>Kontakt: Max Mustermann – info@soundcheck.de – Tel: 0123 456789</p>
+    <p><a href="#impressum" style="color:white;">Impressum</a></p>
+  </footer>
+
+  <section id="impressum" style="background:#fff; padding: 20px;">
+    <h2>Impressum</h2>
+    <p>Angaben gemäß § 5 TMG:</p>
+    <p>Max Mustermann<br>Soundcheck Vermietung<br>Musterstraße 1<br>12345 Musterstadt</p>
+    <p>Kontakt:<br>Telefon: 0123 456789<br>E-Mail: info@soundcheck.de</p>
+  </section>
+
+</body>
 </html>
