@@ -40,23 +40,42 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-sizing: border-box;
     }
     form label {
-      display: block;
-      margin: 10px 0 5px;
+      font-weight: 600;
+      margin-bottom: 5px;
     }
-    form input, form select {
+    form input,
+    form select,
+    form textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      resize: vertical; /* Textarea vertikal skalierbar */
+      margin-bottom: 0;  /* Abstand wird durch gap im Formular geregelt */
+      display: block;
     }
     form button {
       background: #111;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border: none;
       cursor: pointer;
       border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background-color 0.2s ease;
+    }
+    form button:hover {
+      background-color: #333;
     }
     footer {
       background: #222;
@@ -64,6 +83,14 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
+    }
+    #impressum {
+      background:#fff;
+      padding: 20px;
+      max-width: 600px;
+      margin: 40px auto;
+      border-radius: 8px;
+      box-sizing: border-box;
     }
   </style>
 </head>
@@ -82,39 +109,38 @@
 
   <section>
    <form action="https://formspree.io/f/manovopn" method="POST">
-  <h2>Jetzt anfragen</h2>
+    <h2>Jetzt anfragen</h2>
 
-  <label for="email">E-Mail-Adresse</label>
-  <input type="email" id="email" name="email" required>
+    <label for="email">E-Mail-Adresse</label>
+    <input type="email" id="email" name="email" required>
 
-  <label for="from">Von</label>
-  <input type="date" id="from" name="von" required>
+    <label for="from">Von</label>
+    <input type="date" id="from" name="von" required>
 
-  <label for="to">Bis</label>
-  <input type="date" id="to" name="bis" required>
+    <label for="to">Bis</label>
+    <input type="date" id="to" name="bis" required>
 
-  <label for="box">Welche Box?</label>
-  <select id="box" name="box" required>
-    <option value="">Bitte auswählen</option>
-    <option value="soundboks3">Soundboks 3</option>
-    <option value="soundboks4">Soundboks 4</option>
-    <option value="soundboksGo">Soundboks Go</option>
-  </select>
+    <label for="box">Welche Box?</label>
+    <select id="box" name="box" required>
+      <option value="">Bitte auswählen</option>
+      <option value="soundboks3">Soundboks 3</option>
+      <option value="soundboks4">Soundboks 4</option>
+      <option value="soundboksGo">Soundboks Go</option>
+    </select>
 
-  <label for="location">Standort</label>
-  <select id="location" name="standort" required>
-    <option value="">Bitte auswählen</option>
-    <option value="berlin">Köln</option>
-    <option value="hamburg">Bremen</option>
-    <option value="koeln">Oldenburg</option>
-  </select>
+    <label for="location">Standort</label>
+    <select id="location" name="standort" required>
+      <option value="">Bitte auswählen</option>
+      <option value="berlin">Köln</option>
+      <option value="hamburg">Bremen</option>
+      <option value="koeln">Oldenburg</option>
+    </select>
 
-  <label for="nachricht">Dein Anliegen</label>
-  <textarea id="nachricht" name="nachricht" rows="5" placeholder="Gib hier deine Nachricht ein..." required></textarea>
+    <label for="nachricht">Dein Anliegen</label>
+    <textarea id="nachricht" name="nachricht" rows="5" placeholder="Gib hier deine Nachricht ein..." required></textarea>
 
-  <button type="submit">Anfrage senden</button>
-</form>
-
+    <button type="submit">Anfrage senden</button>
+  </form>
   </section>
 
   <footer>
@@ -123,7 +149,7 @@
     <p>Köln: Lennard Ahrens – soundcheck.partyboxenvermietung@gmail.com – Tel: +49 172 6128251</p>
   </footer>
 
-  <section id="impressum" style="background:#fff; padding: 20px;">
+  <section id="impressum">
     <h2>Impressum</h2>
     <p>Angaben gemäß § 5 TMG:</p>
     <p>Marius Mielke<br>Mielke's Partyboxen<br>Heinz-Schulz-Weg 60<br>28357 Bremen</p>
