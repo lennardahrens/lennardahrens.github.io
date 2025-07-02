@@ -1,157 +1,151 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DailyMatch – Dein tägliches Match</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #00e5d4, #00c853);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DailyMatch</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #00e5d4, #00c853);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+      }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.25rem;
-      max-width: 700px;
-      margin: 0 auto 1.5rem auto;
-      line-height: 1.6;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
-      max-width: 400px;
-      margin-top: 1rem;
-    }
-
-    input[type="email"] {
-      padding: 1rem;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    button {
-      padding: 0.75rem 2rem;
-      background-color: #ffffff;
-      color: #00c853;
-      font-weight: 700;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #e0f2f1;
-    }
-
-    #message {
-      padding: 1rem;
-      font-size: 1.125rem;
-      border-radius: 12px;
-      margin-top: 1rem;
-      max-width: 400px;
-      width: 100%;
-      display: none;
-    }
-
-    .success {
-      background-color: #2e7d32;
-    }
-
-    .error {
-      background-color: #c62828;
-    }
-
-    @media (max-width: 600px) {
       h1 {
-        font-size: 2.25rem;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
       }
 
       p {
+        max-width: 600px;
         font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 400px;
+        align-items: center;
+      }
+
+      input[type="email"] {
+        padding: 1rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
       }
 
       button {
+        padding: 0.75rem 1.5rem;
         font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        background-color: white;
+        color: #00c853;
+        cursor: pointer;
+        transition: background-color 0.3s;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <h1>DailyMatch</h1>
-  <p>Stell dir vor, du bekommst jeden Tag ein garantiertes Match – kein Warten, kein Rätselraten. Mit DailyMatch erhältst du täglich um Mitternacht ein zugewiesenes Match. Ab 18 Uhr könnt ihr entscheiden, ob ihr in Kontakt bleiben wollt – mit freigeschalteten Infos wie Instagram, Telefonnummer und mehr.</p>
-  
-  <p>Swipe zusätzlich, finde dein "Perfect Match" durch individuelle Wunschangaben, und sichere dir Rabatte bei Dates über unser Partnerprogramm. Klingt fair? Dann setz dich jetzt auf die Warteliste!</p>
-
-  <div id="message"></div>
-
-  <form id="waitlist-form">
-    <input type="email" id="email" placeholder="Deine E-Mail-Adresse" required />
-    <button type="submit">Jetzt auf Warteliste setzen</button>
-  </form>
-
-  <!-- Optional: Simple Analytics -->
-  <!-- <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script> -->
-  <!-- <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript> -->
-
-  <script>
-    const supabaseUrl = "https://gntjevuvkgovqwuhgzsq.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdudGpldnV2a2dvdnF3dWhnenNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NzU4MzgsImV4cCI6MjA2NzA1MTgzOH0.O6Y9HmGOMAdq3NoVnF7HrDqfArrMk7dOXPzOjG21wrg";
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-    const form = document.getElementById("waitlist-form");
-    const messageDiv = document.getElementById("message");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-
-      const { error } = await supabase
-        .from("warteliste")
-        .insert([{ email }]);
-
-      if (error) {
-        showMessage("Fehler beim Eintragen. Bitte versuch es erneut.", "error");
-        console.error("Supabase Fehler:", error);
-      } else {
-        showMessage("Danke für dein Interesse! Du stehst jetzt auf der Warteliste.", "success");
-        form.reset();
+      button:hover {
+        background-color: #e0f2f1;
       }
-    });
 
-    function showMessage(text, type) {
-      messageDiv.textContent = text;
-      messageDiv.className = type;
-      messageDiv.style.display = "block";
+      #message {
+        display: none;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        font-weight: bold;
+        width: 100%;
+        max-width: 400px;
+      }
 
-      setTimeout(() => {
-        messageDiv.style.display = "none";
-      }, 5000);
-    }
-  </script>
-</body>
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DailyMatch</h1>
+    <p>
+      Jeden Tag ein garantiertes Match. Um Mitternacht wird dir ein Match
+      zugeteilt – ab 18 Uhr könnt ihr beide entscheiden, ob ihr den Kontakt
+      aufrechterhalten möchtet. Bei gegenseitigem Interesse werden
+      Kontaktinformationen wie Instagram automatisch freigegeben.
+    </p>
+    <p>
+      Zusätzlich kannst du Profile swipen, dein Perfect Match angeben und
+      bekommst Rabatte bei echten Dates über unser Partnerprogramm.
+      <br /><br />
+      Trag dich jetzt in die Warteliste ein!
+    </p>
+
+    <!-- Neue Bestätigungsmeldung -->
+    <div id="message"></div>
+
+    <!-- Formular -->
+    <form id="waitlist-form">
+      <input type="email" id="email" placeholder="Deine E-Mail-Adresse" required />
+      <button type="submit">Auf die Warteliste</button>
+    </form>
+
+    <!-- Supabase & Bestätigungsskript -->
+    <script>
+      const supabaseUrl = "https://gntjevuvkgovqwuhgzsq.supabase.co";
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdudGpldnV2a2dvdnF3dWhnenNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NzU4MzgsImV4cCI6MjA2NzA1MTgzOH0.O6Y9HmGOMAdq3NoVnF7HrDqfArrMk7dOXPzOjG21wrg";
+      const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+      const form = document.getElementById("waitlist-form");
+      const messageDiv = document.getElementById("message");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+
+        const { error } = await supabase
+          .from("warteliste")
+          .insert([{ email }]);
+
+        if (error) {
+          showMessage("Fehler beim Eintragen. Bitte versuch es erneut.", "error");
+          console.error("Supabase Fehler:", error);
+        } else {
+          showMessage("Danke für dein Interesse! Du stehst jetzt auf der Warteliste.", "success");
+          form.reset();
+        }
+      });
+
+      function showMessage(text, type) {
+        messageDiv.textContent = text;
+        messageDiv.style.display = "block";
+        messageDiv.style.backgroundColor = type === "success" ? "#4CAF50" : "#f44336";
+        messageDiv.style.color = "white";
+
+        setTimeout(() => {
+          messageDiv.style.display = "none";
+        }, 5000);
+      }
+    </script>
+  </body>
 </html>
