@@ -2,159 +2,126 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soundcheck – Soundboks Vermietung</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 8px;
-      padding: 10px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      display: block;
-    }
-    form {
-      background: white;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      box-sizing: border-box;
-    }
-    form label {
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-    form input,
-    form select,
-    form textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-      resize: vertical; /* Textarea vertikal skalierbar */
-      margin-bottom: 0;  /* Abstand wird durch gap im Formular geregelt */
-      display: block;
-    }
-    form button {
-      background: #111;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 700;
-      transition: background-color 0.2s ease;
-    }
-    form button:hover {
-      background-color: #333;
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    #impressum {
-      background:#fff;
-      padding: 20px;
-      max-width: 600px;
-      margin: 40px auto;
-      border-radius: 8px;
-      box-sizing: border-box;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DailyMatch</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide-static@0.241.0/dist/lucide.min.js" defer></script>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-pink-50 via-blue-50 to-purple-50 font-sans">
 
-  <header>
-    <h1>Soundcheck</h1>
-    <p>Jetzt eine gute Zeit mieten !</p>
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-sm border-b">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+        DailyMatch
+      </h1>
+      <div class="space-x-4">
+        <a href="/login" class="inline-block border border-gray-300 rounded px-4 py-2 hover:bg-gray-100">Anmelden</a>
+        <a href="/login" class="inline-block bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded px-4 py-2 hover:opacity-90">
+          Jetzt starten
+        </a>
+      </div>
+    </div>
   </header>
 
-  <section class="gallery">
-    <img src="Köln.jpg" alt="Köln" />
-    <img src="Köln (7).jpg" alt="Bremen" />
-    <img src="Köln (8).jpg" alt="Oldenburg" />
+  <!-- Hero Section -->
+  <section class="container mx-auto px-6 py-16 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent py-2">
+        Jeden Tag ein neues Match
+      </h2>
+      <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+        DailyMatch ist die Dating-App mit 100% Match-Garantie. Jeden Tag um 0:00 Uhr erhältst du 
+        ein perfekt auf dich abgestimmtes Match. Lerne euch durch Icebreaker kennen und entscheidet 
+        gemeinsam um 18:00 Uhr, ob ihr euch näher kennenlernen möchtet.
+      </p>
+      <a href="/login" class="inline-block bg-gradient-to-r from-pink-500 to-blue-500 text-white text-lg px-8 py-4 rounded hover:opacity-90">
+        Kostenlos registrieren
+      </a>
+    </div>
   </section>
 
-  <section>
-   <form action="https://formspree.io/f/manovopn" method="POST">
-    <h2>Jetzt anfragen</h2>
+  <!-- Features -->
+  <section class="container mx-auto px-6 py-16">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">
+      So funktioniert DailyMatch
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-    <label for="email">E-Mail-Adresse</label>
-    <input type="email" id="email" name="email" required>
+      <!-- Feature Card 1 -->
+      <div class="bg-white/80 backdrop-blur-sm border border-pink-200 text-center p-6 rounded-lg shadow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-pink-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3" />
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+        <h4 class="text-xl font-semibold mb-3">Täglich um 0:00 Uhr</h4>
+        <p class="text-gray-600">
+          Jeden Tag erhältst du automatisch ein neues, perfekt passendes Match
+        </p>
+      </div>
 
-    <label for="from">Von</label>
-    <input type="date" id="from" name="von" required>
+      <!-- Feature Card 2 -->
+      <div class="bg-white/80 backdrop-blur-sm border border-blue-200 text-center p-6 rounded-lg shadow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-5-.5L3 20l1.5-4.5A7.964 7.964 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        <h4 class="text-xl font-semibold mb-3">Icebreaker Spiele</h4>
+        <p class="text-gray-600">
+          Lerne dein Match durch tiefgehende Fragen und Spiele kennen
+        </p>
+      </div>
 
-    <label for="to">Bis</label>
-    <input type="date" id="to" name="bis" required>
+      <!-- Feature Card 3 -->
+      <div class="bg-white/80 backdrop-blur-sm border border-purple-200 text-center p-6 rounded-lg shadow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-purple-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a7 7 0 00-7-7H7a7 7 0 00-7 7v2h5" />
+          <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+        <h4 class="text-xl font-semibold mb-3">Abstimmung um 18:00</h4>
+        <p class="text-gray-600">
+          Entscheidet gemeinsam, ob ihr euch weiter kennenlernen möchtet
+        </p>
+      </div>
 
-    <label for="box">Welche Box?</label>
-    <select id="box" name="box" required>
-      <option value="">Bitte auswählen</option>
-      <option value="soundboks3">Soundboks 3</option>
-      <option value="soundboks4">Soundboks 4</option>
-      <option value="soundboksGo">Soundboks Go</option>
-    </select>
+      <!-- Feature Card 4 -->
+      <div class="bg-white/80 backdrop-blur-sm border border-green-200 text-center p-6 rounded-lg shadow">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        <h4 class="text-xl font-semibold mb-3">100% Match-Garantie</h4>
+        <p class="text-gray-600">
+          Jeden Tag ein neues Match - keine endlosen Swipes mehr
+        </p>
+      </div>
 
-    <label for="location">Standort</label>
-    <select id="location" name="standort" required>
-      <option value="">Bitte auswählen</option>
-      <option value="berlin">Köln</option>
-      <option value="hamburg">Bremen</option>
-      <option value="koeln">Oldenburg</option>
-    </select>
-
-    <label for="nachricht">Dein Anliegen</label>
-    <textarea id="nachricht" name="nachricht" rows="5" placeholder="Gib hier deine Nachricht ein..." required></textarea>
-
-    <button type="submit">Anfrage senden</button>
-  </form>
+    </div>
   </section>
 
-  <footer>
-    <h2>Kontakt</h2>
-    <p>Bremen/Oldenburg: Marius Mielke – soundcheck.partyboxenvermietung@gmail.com – Tel: +49 173 2424498</p>
-    <p>Köln: Lennard Ahrens – soundcheck.partyboxenvermietung@gmail.com – Tel: +49 172 6128251</p>
+  <!-- Mission -->
+  <section class="bg-gradient-to-r from-pink-100 to-blue-100 py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-8 text-gray-800">Unsere Mission</h3>
+      <div class="max-w-3xl mx-auto">
+        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+          Wir glauben, dass Dating nicht oberflächlich sein muss. Deshalb haben wir DailyMatch 
+          entwickelt - eine Plattform, die echte Verbindungen fördert, anstatt endloses Swipen 
+          zu belohnen.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Durch unser einzigartiges 24-Stunden-System gibst du dir und deinem Match die Zeit, 
+          die ihr verdient, um euch wirklich kennenzulernen. Qualität vor Quantität.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white/80 backdrop-blur-sm border-t py-8">
+    <div class="container mx-auto px-6 text-center text-gray-600">
+      <p>&copy; 2024 DailyMatch. Alle Rechte vorbehalten.</p>
+    </div>
   </footer>
-
-  <section id="impressum">
-    <h2>Impressum</h2>
-    <p>Angaben gemäß § 5 TMG:</p>
-    <p>Marius Mielke<br>Mielke's Partyboxen<br>Heinz-Schulz-Weg 60<br>28357 Bremen</p>
-    <p>Kontakt:<br>Telefon: +49 173 2424498<br>E-Mail: soundcheck.partyboxenvermietung@gmail.com</p>
-  </section>
 
 </body>
 </html>
