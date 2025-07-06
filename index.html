@@ -168,11 +168,12 @@
     <div class="confirmation" id="confirmation"></div>
   </form>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
     const supabaseUrl = "https://gntjevuvkgovqwuhgzsq.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdudGpldnV2a2dvdnF3dWhnenNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NzU4MzgsImV4cCI6MjA2NzA1MTgzOH0.O6Y9HmGOMAdq3NoVnF7HrDqfArrMk7dOXPzOjG21wrg"; // sicher gekürzt
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdudGpldnV2a2dvdnF3dWhnenNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NzU4MzgsImV4cCI6MjA2NzA1MTgzOH0.O6Y9HmGOMAdq3NoVnF7HrDqfArrMk7dOXPzOjG21wrg";
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
     const form = document.getElementById("waitlist-form");
     const confirmation = document.getElementById("confirmation");
@@ -180,7 +181,7 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value;
-      const { data, error } = await supabase.from("waitlist").insert([{ email }]);
+      const { error } = await supabase.from("waitlist").insert([{ email }]);
 
       if (error) {
         confirmation.textContent = "Fehler beim Eintragen. Bitte versuche es erneut.";
@@ -192,7 +193,8 @@
       }
     });
   </script>
+
   <!-- 100% privacy-first analytics -->
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </body>
 </html>
