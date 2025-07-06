@@ -181,7 +181,7 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value;
-      const { error } = await supabase.from("waitlist").insert([{ email }]);
+      const { error } = await supabase.from("warteliste").insert([{ email }]);
 
       if (error) {
         confirmation.textContent = "Fehler beim Eintragen. Bitte versuche es erneut.";
