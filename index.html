@@ -169,13 +169,14 @@
     <div class="confirmation" id="confirmation"></div>
   </form>
 
-  <!-- Supabase: Originale Verbindung (nicht verändert) -->
-  <script src="https://unpkg.com/@supabase/supabase-js"></script>
-  <script>
+  <!-- Supabase laden mit defer -->
+<script src="https://unpkg.com/@supabase/supabase-js" defer></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', () => {
     const SUPABASE_URL = "https://gntjevuvkgovqwuhgzsq.supabase.co";
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdudGpldnV2a2dvdnF3dWhnenNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NzU4MzgsImV4cCI6MjA2NzA1MTgzOH0.O6Y9HmGOMAdq3NoVnF7HrDqfArrMk7dOXPzOjG21wrg";
 
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     const form = document.getElementById("waitlist-form");
     const confirmation = document.getElementById("confirmation");
@@ -197,7 +198,9 @@
         form.reset();
       }
     });
-  </script>
+  });
+</script>
+
 
   <!-- Simple Analytics -->
   <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
